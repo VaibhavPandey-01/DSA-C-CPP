@@ -62,6 +62,15 @@ void show_stack(struct stack* s){
     }
 }
 
+int peek_stack(struct stack * s ){
+    int pos ;
+    printf("Enter position of the element : ");scanf("%d",&pos);
+    if(pos <= 0 || pos > (s->top + 1)){
+        printf("wrong position ");
+        return -1;
+    }
+    return s->arr[s->top-pos+1];
+}
 
 int main(){
     struct stack* S1 = create_stack(5);
@@ -72,7 +81,8 @@ int main(){
         printf("1. For pushing an element into the stack \n");
         printf("2. For deleting the top most element of the stack \n");
         printf("3. For printing the elements of the stack \n");
-        printf("4. To exit "); scanf("%d",&ch);
+        printf("4. To peek an element in the stack \n");
+        printf("5. To exit "); scanf("%d",&ch);
 
         switch (ch)
         {
@@ -82,7 +92,9 @@ int main(){
         break;
         case 3: show_stack(S1);
         break;
-        case 4: exit(0);
+        case 4:printf("%d \n",peek_stack(S1));
+        break; 
+        case 5: exit(0);
         default: printf("Wrong Choice \n");
             break;
         }
