@@ -52,22 +52,23 @@ void del_top(struct stack* s){
 // Function that traverse the stack and prints the elements 
 void show_stack(struct stack* s){
     struct stack* temp = s;
-    if(s->top == -1){
+    if(temp->top == -1){
         printf("Stack is empty \n");
         return;
     }
     printf("Elements : \n");
-    for(int i = 0 ; i<=s->top;i++){
-        printf("%d ",s->arr[i]);
+    for(int i = 0 ; i<=temp->top;i++){
+        printf("%d ",temp->arr[i]);
     }
 }
 
+//function to peek element with a position value as parameter 
 int peek_stack(struct stack * s ){
     int pos ;
     printf("Enter position of the element : ");scanf("%d",&pos);
     if(pos <= 0 || pos > (s->top + 1)){
         printf("wrong position ");
-        return -1;
+        return pos;
     }
     return s->arr[s->top-pos+1];
 }

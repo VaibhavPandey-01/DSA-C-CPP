@@ -8,7 +8,8 @@ struct queue{ // creating queue
     int *arr;
 } queue;
 
-struct queue* create_queue(int cap){ // create queue function
+// create queue function
+struct queue* create_queue(int cap){  // capacity as function parameter 
     struct queue* q = (struct queue*)malloc(sizeof(struct queue)); // dynamically allocate memory to q
     q->front = q->rear = -1;// initially both are -1 hence empty queue
     q->size = 0;
@@ -19,7 +20,7 @@ struct queue* create_queue(int cap){ // create queue function
 
 // function to add an element to queue 
 void enqueue(struct queue* q, int data){ 
-    if(q->rear == q->capacity){ // check if queue is full 
+    if(q->rear == q->capacity-1){ // check if queue is full 
         printf("Queue is full \n");
         return;
     }
@@ -62,6 +63,13 @@ void front_q(struct queue* q){
     printf("Front of queue : %d \n",q->front);
 }
 
+//Function to free Queue and Array present the queue 
+void FreeQueue(struct queue* q){
+    free(q->arr);
+    free(q);
+    printf("Queue is deleted");
+}
+
 int main(){
     struct queue* q1 =create_queue(5);
     enqueue(q1,99);
@@ -77,6 +85,6 @@ int main(){
     q_size(q1);
     dis_q(q1);
     front_q(q1);
-    free(q1);
+    FreeQueue(q1);
     return 0;
 }
